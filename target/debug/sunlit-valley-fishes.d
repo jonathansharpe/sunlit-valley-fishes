@@ -1,1 +1,1 @@
-/home/jonathan/Documents/sunlit-valley-fishes/sunlit-valley-fishes/target/debug/sunlit-valley-fishes: /home/jonathan/Documents/sunlit-valley-fishes/sunlit-valley-fishes/src/main.rs
+/home/jonathan/git/sunlit-valley-fishes/target/debug/sunlit-valley-fishes: /home/jonathan/git/sunlit-valley-fishes/src/main.rs

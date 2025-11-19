@@ -1,0 +1,422 @@
+[[fish]]
+name = "Jellyfish"
+seasons = ["spring", "summer"]
+water_location = "ocean"
+time_of_day = "night"
+
+[[fish]]
+name = "Tropical Fish"
+seasons = ["spring", "summer"]
+water_location = "ocean"
+time_of_day.spring = "night"
+time_of_day.summer = ["day", "night"]
+
+[[fish]]
+name = "Drooping Gourami"
+seasons = "spring"
+water_location = "ocean"
+time_of_day = "day"
+
+[[fish]]
+name = "Atlantic Halibut"
+seasons = "spring"
+water_location = "ocean"
+time_of_day = "day"
+weather = "rain"
+
+[[fish]]
+name = "Spindlefish"
+seasons = "spring"
+water_location = "ocean"
+time_of_day = "night"
+
+[[fish]]
+name = "Pufferfish"
+seasons = ["spring", "summer", "autumn"]
+water_location = "ocean"
+time_of_day = "night"
+weather = "clear"
+
+[[fish]]
+name = "Minnow"
+water_location = ["fresh", "river"]
+time_of_day = "day"
+
+[[fish]]
+name = "Bluegill"
+water_location = ["fresh", "river"]
+time_of_day = "night"
+
+[[fish]]
+name = "Perch"
+seasons = ["spring", "autumn", "winter"]
+water_location = "fresh"
+time_of_day.spring = "day"
+time_of_day.autumn = "day"
+time_of_day.winter = "night"
+
+[[fish]]
+name = "Carp"
+seasons = ["spring", "summer", "autumn", "winter"]
+water_location = "fresh"
+time_of_day.spring = "day"
+time_of_day.summer = "day"
+time_of_day.autumn = "day"
+time_of_day.winter = "night"
+weather.spring = "rain"
+
+[[fish]]
+name = "Beaked Herring"
+seasons = "spring"
+water_location = "fresh"
+time_of_day = "day"
+
+[[fish]]
+name = "Hatchetfish"
+seasons = ["spring", "winter"]
+water_location = "fresh"
+time_of_day = "night"
+
+[[fish]]
+name = "Eyelash"
+seasons = "spring"
+water_location = "fresh"
+time_of_day = "night"
+weather = "clear"
+
+[[fish]]
+name = "Smallmouth Bass"
+seasons = ["spring", "summer", "autumn"]
+water_location = "river"
+time_of_day.spring = "night"
+time_of_day.summer = ["night", "day"]
+time_of_day.autumn = "day"
+
+[[fish]]
+name = "Cod"
+seasons = ["spring", "winter"]
+water_location = "river"
+time_of_day.spring = "night"
+time_of_day.winter = ["day", "night"]
+
+[[fish]]
+name = "Pink Salmon"
+seasons = ["spring", "winter"]
+water_location = "river"
+time_of_day.spring = "night"
+time_of_day.winter = "day"
+
+[[fish]]
+name = "Catfish"
+seasons = ["spring"]
+water_location = "river"
+time_of_day = "night"
+weather = "rain"
+
+[[fish]]
+name = "Bayad"
+seasons = ["spring"]
+water_location = "river"
+time_of_day = "night"
+weather = "rain"
+
+[[fish]]
+name = "Blind Sailfin"
+seasons = ["spring"]
+water_location = "river"
+time_of_day = "day"
+
+[[fish]]
+name = "Sneep Snorp"
+seasons = ["summer"]
+water_location = "ocean"
+time_of_day = ["day", "night"]
+
+[[fish]]
+name = "Red Grouper"
+seasons = ["summer"]
+water_location = "ocean"
+time_of_day = "night"
+
+[[fish]]
+name = "Tuna"
+seasons = ["summer"]
+water_location = "ocean"
+time_of_day = "day"
+
+[[fish]]
+name = "Capitaine"
+seasons = ["summer"]
+water_location = "ocean"
+time_of_day = "day"
+
+[[fish]]
+name = "Goldfish"
+seasons = ["summer"]
+water_location = "ocean"
+time_of_day = "day"
+weather = "clear"
+
+[[fish]]
+name = "Leech"
+seasons = ["summer"]
+water_location = ["freshwater", "river"]
+time_of_day = "night"
+
+[[fish]]
+name = "Piranha"
+seasons = ["summer"]
+water_location = "freshwater"
+time_of_day = "night"
+weather = "rain"
+
+[[fish]]
+name = "Boulti"
+seasons = ["summer"]
+water_location = "freshwater"
+time_of_day = "night"
+
+[[fish]]
+name = "Arapaima"
+seasons = ["summer"]
+water_location = "freshwater"
+time_of_day = "day"
+weather = "rain"
+
+[[fish]]
+name = "Circus Fish"
+seasons = ["summer"]
+water_location = "freshwater"
+time_of_day = "day"
+
+[[fish]]
+name = "Salmon"
+seasons = ["summer", "autumn"]
+water_location = "river"
+time_of_day = "day"
+
+[[fish]]
+name = "Synodontis"
+seasons = ["summer"]
+water_location = "river"
+time_of_day = "day"
+weather = "clear"
+
+[[fish]]
+name = "Tambaqui"
+seasons = ["summer"]
+water_location = "river"
+time_of_day = "night"
+
+[[fish]]
+name = "Box Turtle"
+seasons = ["summer"]
+water_location = "river"
+time_of_day = "night"
+weather = "rain"
+
+[[fish]]
+name = "Blackfish"
+seasons = ["autumn", "winter"]
+water_location = "ocean"
+time_of_day.autumn = "night"
+time_of_day.winter = ["day", "night"]
+
+[[fish]]
+name = "Picklefish"
+seasons = ["autumn"]
+water_location = "ocean"
+time_of_day = "night"
+weather = "rain"
+
+[[fish]]
+name = "Forkfish"
+seasons = ["autumn"]
+water_location = "ocean"
+time_of_day = ["day", "night"]
+
+[[fish]]
+name = "Sailor Barb"
+seasons = ["autumn"]
+water_location = "ocean"
+time_of_day = "day"
+
+[[fish]]
+name = "Demon Herring"
+seasons = ["autumn"]
+water_location = "ocean"
+time_of_day = "night"
+
+[[fish]]
+name = "Copperflame Anthias"
+seasons = ["autumn", "winter"]
+water_location = "ocean"
+time_of_day = "night"
+weather = "clear"
+
+[[fish]]
+name = "Red Shrooma"
+seasons = ["autumn"]
+water_location = "ocean"
+time_of_day = "day"
+weather = "rain"
+
+[[fish]]
+name = "Gar"
+seasons = ["autumn"]
+water_location = "fresh"
+time_of_day = "day"
+weather = "rain"
+
+[[fish]]
+name = "Bark Angelfish"
+seasons = ["autumn"]
+water_location = "fresh"
+time_of_day = "day"
+
+[[fish]]
+name = "Amber Goby"
+seasons = ["autumn"]
+water_location = "fresh"
+time_of_day = "night"
+weather = "clear"
+
+[[fish]]
+name = "Brown Trout"
+seasons = ["autumn", "winter"]
+water_location = "river"
+time_of_day = "day"
+
+[[fish]]
+name = "Muskellenge"
+seasons = ["autumn"]
+water_location = "river"
+time_of_day = "night"
+
+[[fish]]
+name = "Arrau Turtle"
+seasons = ["autumn"]
+water_location = "river"
+time_of_day = "night"
+weather = "rain"
+
+[[fish]]
+name = "Pollock"
+seasons = ["winter"]
+water_location = "ocean"
+time_of_day = "day"
+weather = "rain"
+
+[[fish]]
+name = "Atlantic Cod"
+seasons = ["winter"]
+water_location = "ocean"
+time_of_day = "day"
+
+[[fish]]
+name = "Triple Twirl Pleco"
+seasons = ["winter"]
+water_location = "ocean"
+time_of_day = "night"
+
+[[fish]]
+name = "Pacific Halibut"
+seasons = ["winter"]
+water_location = "ocean"
+time_of_day = "day"
+
+[[fish]]
+name = "Brown Shrooma"
+seasons = ["winter"]
+water_location = "ocean"
+time_of_day = ["day", "night"]
+weather = "rain"
+
+[[fish]]
+name = "Snowflake"
+seasons = ["winter"]
+water_location = "fresh"
+time_of_day = "night"
+weather = "rain"
+
+[[fish]]
+name = "Aero Mono"
+seasons = ["winter"]
+water_location = "fresh"
+time_of_day = "day"
+
+[[fish]]
+name = "Duality Damselfish"
+seasons = ["winter"]
+water_location = "river"
+time_of_day = "night"
+weather = "clear"
+
+[[fish]]
+name = "Rainbow Trout"
+seasons = ["winter"]
+water_location = "river"
+time_of_day = "day"
+weather = "rain"
+
+[[fish]]
+name = "Starshell Turtle"
+seasons = ["winter"]
+water_location = "river"
+time_of_day = "night"
+weather = "rain"
+
+[[fish]]
+name = "Searing Cod"
+dimension = "nether"
+biome = "any"
+
+[[fish]]
+name = "Lava Pufferfish"
+dimension = "nether"
+biome = "any"
+
+[[fish]]
+name = "Fortress Grouper"
+dimension = "nether"
+biome = "any"
+
+[[fish]]
+name = "Blazefish"
+dimension = "nether"
+biome = "any"
+
+[[fish]]
+name = "Obsidianfish"
+dimension = "nether"
+biome = "Basalt Deltas"
+
+[[fish]]
+name = "Magmacube Fish"
+dimension = "nether"
+biome = "Basalt Deltas"
+
+[[fish]]
+name = "Glowdine"
+dimension = "nether"
+biome = "Warped Forest"
+
+[[fish]]
+name = "Eyeball Fish"
+dimension = "nether"
+biome = "Crimson Forest"
+
+[[fish]]
+name = "Bonefish"
+dimension = "nether"
+biome = "Nether Wastes"
+
+[[fish]]
+name = "Wither Bonefish"
+dimension = "nether"
+biome = "Soul Sand Valley"
+
+[[fish]]
+name = "Soul Sucker"
+dimension = "nether"
+biome = "Soul Sand Valley"

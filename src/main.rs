@@ -4,6 +4,44 @@
 // include options to go back or restart the prompt
 
 use std::io;
+use std::io::Read;
+use std::collections::HashMap;
+use std::fs;
+use serde::Deserialize;
+use toml;
+
+#[derive(Debug, Deserialize)]
+enum TimeOfDay {
+    Simple(String),
+    Multiple(Vec<String>),
+    Seasonal(HashMap<String, Vec<String>>),
+}
+
+#[derive(Debug, Deserialize)]
+struct Fish {
+    #[allow(dead_code)]
+    name: String,
+    seasons: Vec<String>,
+    water_location: Vec<String>,
+    time_of_day: Option<TimeOfDay>,
+    weather: Option<Vec<String>>,
+    biome: String,
+    dimension: String,
+}
+
+impl Default for Fish {
+    fn default() -> Self {
+        Self {
+            name: "missingno".into(),
+            seasons: vec!["spring".into(),"summer".into(),"autumn".into(),"winter".into()],
+            water_location: vec!["ocean".into(),"fresh".into(),"river".into()],
+            time_of_day: Some(TimeOfDay::Multiple(vec!["day".into(),"night".into()])),
+            weather: Some(vec!["clear".into(),"rain".into()]),
+            biome: "any".into(),
+            dimension: "overworld".into()
+        }
+    }
+}
 
 fn text_input(display_text: &str, x: i32) -> i32 {
     // pseudocode
@@ -32,13 +70,22 @@ fn main() {
 
     //let nether = false; // true = nether, false = overworld
     //let biome = 0; // 1 = basalt delta, 2 = crimson forest, 3 = warped forest, 4 = soul sand valley, 5 = nether wastes
+    
+    let toml_str = fs::read_to_string("fish-data.toml").expect("Failed to read file");
+
+    let fish_list: Vec<Fish> = toml::from_str(&toml_str).unwrap();
+
+    println!("{:#?}", fish_list);
+    
+    // `contents` contains the content of the TOML file
+    // println!("{}", contents);
 
     loop {
 
         println!("Welcome to the Sunlit Valley Fish Radar!");
         let dimension = text_input("Are you fishing in the Overworld or Nether? Enter 1 for Overworld, 2 for Nether", 2);
 
-        if (dimension == 1) {
+        if dimension == 1 {
        		let season = text_input("Enter the season; 1. Spring, 2. Summer, 3. Fall, 4. Winter", 4);
       		let water_location = text_input("Enter the water type; 1. Fresh, 2. River, 3. Ocean", 3);
         	let daytime = text_input("Enter the time of day; 1. Daytime, 2. Nighttime", 2);
