@@ -7,85 +7,9 @@ use std::io;
 use std::io::Read;
 use std::collections::HashMap;
 use std::fs;
+use std::fmt;
 use serde::Deserialize;
 use toml;
-
-// high level overview of what we're implementing:
-// the user will be prompted to enter their current dimension
-// if its the overworld, they will be prompted for the seaons, water type, time of day, and weather
-// if its the nether, they will be prompted for the biome
-// the data is stored in a TOML file
-
-// there will be default values:
-// season: all
-// water_location: all
-// time of day: all
-// weather: all
-// biome: any
-// dimension: overworld
-// the toml file will not provide the above fields unless they are different from above
-
-// data types for each field:
-// seasons: Vec
-// water_location; Vec
-// time_of_day: Vec
-// weather: Vec
-// biome: Vec
-// dimension: String
-
-// edge cases:
-// some fish require different times of day depending on the season. for example, tropical fish are catchable in the spring ocean at night, but at any time in the summer ocean
-// some fish require different weather conditions depending on the season. for example, carp are catchable in spring freshwater during the day when its raining, but in summer freshwater during the day in any weather
-
-// how to solve this:
-// option 1: have the conditions be all one field. for example:
-/* 
-    name: "Tropical Fish",
-    conditions: {
-        [
-            season: "spring",
-            time_of_day: "night"
-        ],
-        [
-            season: "summer"
-            // this is catchable any time during the summer, and any time is the default value
-        ]
-    }
-
-    name: "Carp",
-    conditions: {
-        [
-            season: "spring",
-            time_of_day: "day",
-            weather: "rain"
-        ],
-        [
-            season: ["summer","autumn"],
-            time_of_day: "day"
-            // catchable during any weather, which is default value
-        ],
-        [
-            season: "winter",
-            time_of_day: "night"
-        ]
-    }
-
-    need to convert the above to TOML
- */
-
- /*
-  now we need to make the struct. there will be two
-  first is the Fish
-  it will have these fields: name, conditions[]
-
-  next we have Conditions
-  it will have these fields:
-    water_location: string or vector
-    season: string or vector
-    time of day: string or vector
-    biome: string
-    weather: string or vector
-  */
 
 #[derive(Debug, Deserialize, Default)]
 #[serde(default)]
@@ -98,23 +22,24 @@ struct Conditions {
     dimension: Vec<String>
 }
 
-// impl Default for Conditions {
-//     fn default() -> Conditions {
-//         Conditions {
-//             water_location: vec![], 
-//             season: vec![],
-//             time_of_day: vec![],
-//             biome: vec![],
-//             weather: vec![],
-//             dimension: vec![]
-//         }
-//     }
-// }
-
 #[derive(Debug, Deserialize)]
 struct Fish {
     name: String,
     conditions: Vec<Conditions>
+}
+
+impl fmt::Display for Fish {
+    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+        write!(f, "Fish name: {}", self.name)?;
+        write!(f, "\nConditions: ")?;
+        // fix the below code to accurately output the conditions
+        let locations = self.conditions.iter()
+            .flat_map(|c| &c.water_location)
+            .map(|s| s.as_str())
+            .collect::<Vec<_>>()
+            .join(", ");
+        write!(f, "{}", locations)
+    }
 }
 
 #[derive(Debug, Deserialize)]
@@ -157,6 +82,10 @@ fn condition_matches(condition: &Conditions, filter: &Conditions) -> bool {
     (condition.dimension.is_empty() || filter.dimension.is_empty() || condition.dimension.iter().any(|d| filter.dimension.contains(d)))
 }
 
+fn reverse_search<'a>(fish_name: &str, fish_list: &'a [Fish]) -> &'a Fish {
+    fish_list.iter().find(|fish| fish.name.to_lowercase() == fish_name.to_lowercase()).expect("Internal logic error, validated fish name not found in the list")
+}
+
 /*
 following function will be given the parameters, run a loop through the list and find the catchable fish. it will return a list of those fish
  */
@@ -179,8 +108,6 @@ fn main() {
         let fish_data: FishData = toml::from_str(&toml_str).expect("Failed to parse TOML");
         let fish_list = fish_data.fish;
 
-        //println!("{:#?}", fish_list);
-
         println!("Welcome to the Sunlit Valley Fish Radar!");
         let mut spawn_conditions = Conditions {
             water_location: vec![],
@@ -190,28 +117,41 @@ fn main() {
             weather: vec![],
             dimension: vec![]
         };
-        let dimension = text_input("Enter the dimension:", &["Overworld", "Nether"]);
+        let search_method = text_input("Are you looking for what fish are catchable around you? Or when to catch a specific fish?", &["All", "Specific"]);
+        if search_method == "all" {
+            let dimension = text_input("Enter the dimension:", &["Overworld", "Nether"]);
+            if dimension == "overworld" {
+                let season = text_input("Enter the current season:", &["Spring", "Summer", "Autumn", "Winter"]);
+                let water_location = text_input("Enter the water type:", &["Fresh", "River", "Ocean"]);
+                let time_of_day = text_input("Enter the time of day:", &["Day", "Night"]);
+                let weather = text_input("Enter the weather:", &["Clear", "Rain"]);
+                spawn_conditions.season.push(season);
+                spawn_conditions.time_of_day.push(time_of_day);
+                spawn_conditions.water_location.push(water_location);
+                spawn_conditions.weather.push(weather);
+            }
+            else {
+                let biome = text_input("Enter the Nether biome:", &["Soul Sand Valley", "Nether Wastes", "Crimson Forest", "Warped Forest", "Basalt Deltas"]);
+                spawn_conditions.biome.push(biome);
+            }
+            spawn_conditions.dimension.push(dimension);
 
-        if dimension == "overworld" {
-       		let season = text_input("Enter the current season:", &["Spring", "Summer", "Autumn", "Winter"]);
-      		let water_location = text_input("Enter the water type:", &["Fresh", "River", "Ocean"]);
-        	let time_of_day = text_input("Enter the time of day:", &["Day", "Night"]);
-        	let weather = text_input("Enter the weather:", &["Clear", "Rain"]);
-            spawn_conditions.season.push(season);
-            spawn_conditions.time_of_day.push(time_of_day);
-            spawn_conditions.water_location.push(water_location);
-            spawn_conditions.weather.push(weather);
-        }
+            let return_list = find_fish(&spawn_conditions, &fish_list);
+            println!("\nCatchable fish:");
+                for fish in return_list {
+                    println!("  - {}", fish.name);
+                }
+            }
         else {
-			let biome = text_input("Enter the Nether biome:", &["Soul Sand Valley", "Nether Wastes", "Crimson Forest", "Warped Forest", "Basalt Deltas"]);
-            spawn_conditions.biome.push(biome);
-        }
-        spawn_conditions.dimension.push(dimension);
-
-        let return_list = find_fish(&spawn_conditions, &fish_list);
-        println!("\nCatchable fish:");
-        for fish in return_list {
-            println!("  - {}", fish.name);
+            let fish_name_refs : Vec<&str> = fish_list
+                .iter()
+                .map(|fish| fish.name.as_str())
+                .collect();
+            let fish_name_slice: &[&str] = fish_name_refs.as_slice();
+            let fish_name = text_input("Please enter the fish you are searching for:", fish_name_slice);
+            let found_fish_conditions = reverse_search(fish_name.as_str(), &fish_list);
+            println!("Here are the conditions required to catch this fish:\n");
+            println!("\n{}", found_fish_conditions);
         }
     }
 

@@ -320,7 +320,7 @@ conditions = [
 ]
 
 [[fish]]
-name = "Snowflake"
+name = "Frosty Fin"
 conditions = [
     { water_location = ["fresh"], season = ["winter"], time_of_day = ["night"], weather = ["rain"], dimension = ["overworld"] }
 ]
