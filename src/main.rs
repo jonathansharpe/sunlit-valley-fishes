@@ -28,17 +28,39 @@ struct Fish {
     conditions: Vec<Conditions>
 }
 
+impl fmt::Display for Conditions {
+    fn fmt(&self, c: &mut fmt::Formatter) -> fmt::Result {
+        /*
+        so what are we trying to do?
+        we are trying to log all the fields in a conditions struct
+        each field is a vector of strings
+
+        how to do it?
+        for each field, iterate through each value
+        concatenate the vector values into one comma separated list, prepended by the field name
+         */
+        write!(c, "\tWater locations: ")?;
+        write!(c, "{}\n", self.water_location.iter().map(|s| s.as_str()).collect::<Vec<_>>().join(", "))?;
+        write!(c, "\tSeasons: ")?;
+        write!(c, "{}\n", self.season.iter().map(|s| s.as_str()).collect::<Vec<_>>().join(", "))?;
+        write!(c, "\tTime of day: ")?;
+        write!(c, "{}\n", self.time_of_day.iter().map(|s| s.as_str()).collect::<Vec<_>>().join(", "))?;
+        write!(c, "\tBiome: ")?;
+        write!(c, "{}\n", self.biome.iter().map(|s| s.as_str()).collect::<Vec<_>>().join(", "))?;
+        write!(c, "\tWeather: ")?;
+        write!(c, "{}\n", self.weather.iter().map(|s| s.as_str()).collect::<Vec<_>>().join(", "))?;
+        write!(c, "\tDimension: ")?;
+        write!(c, "{}\n", self.dimension.iter().map(|s| s.as_str()).collect::<Vec<_>>().join(", "))
+
+    }
+}
+
 impl fmt::Display for Fish {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "Fish name: {}", self.name)?;
-        write!(f, "\nConditions: ")?;
-        // fix the below code to accurately output the conditions
-        let locations = self.conditions.iter()
-            .flat_map(|c| &c.water_location)
-            .map(|s| s.as_str())
-            .collect::<Vec<_>>()
-            .join(", ");
-        write!(f, "{}", locations)
+        write!(f, "Fish name: {}\n", self.name)?;
+        self.conditions.iter().try_for_each(|condition| {
+            write!(f, "  - Condition set:\n {}", condition)
+        })
     }
 }
 
