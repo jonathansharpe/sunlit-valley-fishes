@@ -1,422 +1,416 @@
 [[fish]]
+name = "Neptuna"
+conditions = [
+    {}
+]
+
+[[fish]]
 name = "Jellyfish"
-seasons = ["spring", "summer"]
-water_location = "ocean"
-time_of_day = "night"
+conditions = [
+    { water_location = ["river"], season = ["spring", "summer"], time_of_day = ["day"], dimension = ["overworld"] }
+]
 
 [[fish]]
 name = "Tropical Fish"
-seasons = ["spring", "summer"]
-water_location = "ocean"
-time_of_day.spring = "night"
-time_of_day.summer = ["day", "night"]
+conditions = [ 
+    { water_location = ["ocean"], season = ["spring"], time_of_day = ["night"], dimension = ["overworld"] },
+    { water_location = ["ocean"], season = ["summer"], dimension = ["overworld"] }
+]
 
 [[fish]]
 name = "Drooping Gourami"
-seasons = "spring"
-water_location = "ocean"
-time_of_day = "day"
+conditions = [
+    { water_location = ["ocean"], season = ["spring"], time_of_day = ["day"], dimension = ["overworld"] }
+]
 
 [[fish]]
 name = "Atlantic Halibut"
-seasons = "spring"
-water_location = "ocean"
-time_of_day = "day"
-weather = "rain"
+conditions = [
+    { water_location = ["ocean"], season = ["spring"], time_of_day = ["day"], weather = ["rain"], dimension = ["overworld"] }
+]
 
 [[fish]]
 name = "Spindlefish"
-seasons = "spring"
-water_location = "ocean"
-time_of_day = "night"
+conditions = [
+    { water_location = ["ocean"], season = ["spring"], time_of_day = ["night"], dimension = ["overworld"] }
+]
 
 [[fish]]
 name = "Pufferfish"
-seasons = ["spring", "summer", "autumn"]
-water_location = "ocean"
-time_of_day = "night"
-weather = "clear"
+conditions = [
+    { water_location = ["ocean"], season = ["spring", "summer", "autumn"], time_of_day = ["night"], weather = ["clear"], dimension = ["overworld"] }
+]
 
 [[fish]]
 name = "Minnow"
-water_location = ["fresh", "river"]
-time_of_day = "day"
+conditions = [
+    { water_location = ["fresh", "river"], time_of_day = ["day"], dimension = ["overworld"] }
+]
 
 [[fish]]
 name = "Bluegill"
-water_location = ["fresh", "river"]
-time_of_day = "night"
+conditions = [
+    { water_location = ["fresh", "river"], time_of_day = ["night"], dimension = ["overworld"] }
+]
 
 [[fish]]
 name = "Perch"
-seasons = ["spring", "autumn", "winter"]
-water_location = "fresh"
-time_of_day.spring = "day"
-time_of_day.autumn = "day"
-time_of_day.winter = "night"
+conditions = [
+    { water_location = ["fresh"], season = ["spring", "autumn"], time_of_day = ["day"], dimension = ["overworld"] },
+    { water_location = ["fresh"], season = ["winter"], time_of_day = ["night"], dimension = ["overworld"] }
+]
 
 [[fish]]
 name = "Carp"
-seasons = ["spring", "summer", "autumn", "winter"]
-water_location = "fresh"
-time_of_day.spring = "day"
-time_of_day.summer = "day"
-time_of_day.autumn = "day"
-time_of_day.winter = "night"
-weather.spring = "rain"
+conditions = [
+    { water_location = ["fresh"], season = ["spring"], time_of_day = ["day"], weather = ["rain"], dimension = ["overworld"] },
+    { water_location = ["fresh"], season = ["summer", "autumn"], time_of_day = ["day"], dimension = ["overworld"] },
+    { water_location = ["fresh"], season = ["winter"], time_of_day = ["night"], dimension = ["overworld"] }
+]
 
 [[fish]]
 name = "Beaked Herring"
-seasons = "spring"
-water_location = "fresh"
-time_of_day = "day"
+conditions = [
+    { water_location = ["fresh"], season = ["spring"], time_of_day = ["day"], dimension = ["overworld"] }
+]
 
 [[fish]]
 name = "Hatchetfish"
-seasons = ["spring", "winter"]
-water_location = "fresh"
-time_of_day = "night"
+conditions = [
+    { water_location = ["fresh"], season = ["spring", "winter"], time_of_day = ["night"], dimension = ["overworld"] }
+]
 
 [[fish]]
 name = "Eyelash"
-seasons = "spring"
-water_location = "fresh"
-time_of_day = "night"
-weather = "clear"
+conditions = [
+    { water_location = ["fresh"], season = ["spring"], time_of_day = ["night"], weather = ["clear"], dimension = ["overworld"] }
+]
 
 [[fish]]
 name = "Smallmouth Bass"
-seasons = ["spring", "summer", "autumn"]
-water_location = "river"
-time_of_day.spring = "night"
-time_of_day.summer = ["night", "day"]
-time_of_day.autumn = "day"
+conditions = [
+    { water_location = ["river"], season = ["spring"], time_of_day = ["night"], dimension = ["overworld"] },
+    { water_location = ["river"], season = ["summer"], dimension = ["overworld"] },
+    { water_location = ["river"], season = ["autumn"], time_of_day = ["day"], dimension = ["overworld"] }
+]
 
 [[fish]]
 name = "Cod"
-seasons = ["spring", "winter"]
-water_location = "river"
-time_of_day.spring = "night"
-time_of_day.winter = ["day", "night"]
+conditions = [
+    { water_location = ["river"], season = ["spring"], time_of_day = ["night"], dimension = ["overworld"] },
+    { water_location = ["river"], season = ["winter"], dimension = ["overworld"] }
+]
 
 [[fish]]
 name = "Pink Salmon"
-seasons = ["spring", "winter"]
-water_location = "river"
-time_of_day.spring = "night"
-time_of_day.winter = "day"
+conditions = [
+    { water_location = ["river"], season = ["spring"], time_of_day = ["night"], dimension = ["overworld"] },
+    { water_location = ["river"], season = ["winter"], time_of_day = ["day"], dimension = ["overworld"] }
+]
 
 [[fish]]
 name = "Catfish"
-seasons = ["spring"]
-water_location = "river"
-time_of_day = "night"
-weather = "rain"
+conditions = [
+    { water_location = ["river"], season = ["spring"], time_of_day = ["night"], weather = ["rain"], dimension = ["overworld"] }
+]
 
 [[fish]]
 name = "Bayad"
-seasons = ["spring"]
-water_location = "river"
-time_of_day = "night"
-weather = "rain"
+conditions = [
+    { water_location = ["river"], season = ["spring"], time_of_day = ["night"], weather = ["rain"], dimension = ["overworld"] }
+]
 
 [[fish]]
 name = "Blind Sailfin"
-seasons = ["spring"]
-water_location = "river"
-time_of_day = "day"
+conditions = [
+    { water_location = ["river"], season = ["spring"], time_of_day = ["day"], dimension = ["overworld"] }
+]
 
 [[fish]]
 name = "Sneep Snorp"
-seasons = ["summer"]
-water_location = "ocean"
-time_of_day = ["day", "night"]
+conditions = [
+    { water_location = ["ocean"], season = ["summer"], time_of_day = ["day", "night"], dimension = ["overworld"] }
+]
 
 [[fish]]
 name = "Red Grouper"
-seasons = ["summer"]
-water_location = "ocean"
-time_of_day = "night"
+conditions = [
+    { water_location = ["ocean"], season = ["summer"], time_of_day = ["night"], dimension = ["overworld"] }
+]
 
 [[fish]]
 name = "Tuna"
-seasons = ["summer"]
-water_location = "ocean"
-time_of_day = "day"
+conditions = [
+    { water_location = ["ocean"], season = ["summer"], time_of_day = ["day"], dimension = ["overworld"] }
+]
 
 [[fish]]
 name = "Capitaine"
-seasons = ["summer"]
-water_location = "ocean"
-time_of_day = "day"
+conditions = [
+    { water_location = ["ocean"], season = ["summer"], time_of_day = ["day"], dimension = ["overworld"] }
+]
 
 [[fish]]
 name = "Goldfish"
-seasons = ["summer"]
-water_location = "ocean"
-time_of_day = "day"
-weather = "clear"
+conditions = [
+    { water_location = ["ocean"], season = ["summer"], time_of_day = ["day"], weather = ["clear"], dimension = ["overworld"] }
+]
 
 [[fish]]
 name = "Leech"
-seasons = ["summer"]
-water_location = ["freshwater", "river"]
-time_of_day = "night"
+conditions = [
+    { water_location = ["freshwater", "river"], season = ["summer"], time_of_day = ["night"], dimension = ["overworld"] }
+]
 
 [[fish]]
 name = "Piranha"
-seasons = ["summer"]
-water_location = "freshwater"
-time_of_day = "night"
-weather = "rain"
+conditions = [
+    { water_location = ["freshwater"], season = ["summer"], time_of_day = ["night"], weather = ["rain"], dimension = ["overworld"] }
+]
 
 [[fish]]
 name = "Boulti"
-seasons = ["summer"]
-water_location = "freshwater"
-time_of_day = "night"
+conditions = [
+    { water_location = ["freshwater"], season = ["summer"], time_of_day = ["night"], dimension = ["overworld"] }
+]
 
 [[fish]]
 name = "Arapaima"
-seasons = ["summer"]
-water_location = "freshwater"
-time_of_day = "day"
-weather = "rain"
+conditions = [
+    { water_location = ["freshwater"], season = ["summer"], time_of_day = ["day"], weather = ["rain"], dimension = ["overworld"] }
+]
 
 [[fish]]
 name = "Circus Fish"
-seasons = ["summer"]
-water_location = "freshwater"
-time_of_day = "day"
+conditions = [
+    { water_location = ["freshwater"], season = ["summer"], time_of_day = ["day"], dimension = ["overworld"] }
+]
 
 [[fish]]
 name = "Salmon"
-seasons = ["summer", "autumn"]
-water_location = "river"
-time_of_day = "day"
+conditions = [
+    { water_location = ["river"], season = ["summer", "autumn"], time_of_day = ["day"], dimension = ["overworld"] }
+]
 
 [[fish]]
 name = "Synodontis"
-seasons = ["summer"]
-water_location = "river"
-time_of_day = "day"
-weather = "clear"
+conditions = [
+    { water_location = ["river"], season = ["summer"], time_of_day = ["day"], weather = ["clear"], dimension = ["overworld"] }
+]
 
 [[fish]]
 name = "Tambaqui"
-seasons = ["summer"]
-water_location = "river"
-time_of_day = "night"
+conditions = [
+    { water_location = ["river"], season = ["summer"], time_of_day = ["night"], dimension = ["overworld"] }
+]
 
 [[fish]]
 name = "Box Turtle"
-seasons = ["summer"]
-water_location = "river"
-time_of_day = "night"
-weather = "rain"
+conditions = [
+    { water_location = ["river"], season = ["summer"], time_of_day = ["night"], weather = ["rain"], dimension = ["overworld"] }
+]
 
 [[fish]]
 name = "Blackfish"
-seasons = ["autumn", "winter"]
-water_location = "ocean"
-time_of_day.autumn = "night"
-time_of_day.winter = ["day", "night"]
+conditions = [
+    { water_location = ["ocean"], season = ["autumn"], time_of_day = ["night"], dimension = ["overworld"] },
+    { water_location = ["ocean"], season = ["winter"], dimension = ["overworld"] }
+]
 
 [[fish]]
 name = "Picklefish"
-seasons = ["autumn"]
-water_location = "ocean"
-time_of_day = "night"
-weather = "rain"
+conditions = [
+    { water_location = ["ocean"], season = ["autumn"], time_of_day = ["night"], weather = ["rain"], dimension = ["overworld"] }
+]
 
 [[fish]]
 name = "Forkfish"
-seasons = ["autumn"]
-water_location = "ocean"
-time_of_day = ["day", "night"]
+conditions = [
+    { water_location = ["ocean"], season = ["autumn"], dimension = ["overworld"] }
+]
 
 [[fish]]
 name = "Sailor Barb"
-seasons = ["autumn"]
-water_location = "ocean"
-time_of_day = "day"
+conditions = [
+    { water_location = ["ocean"], season = ["autumn"], time_of_day = ["day"], dimension = ["overworld"] }
+]
 
 [[fish]]
 name = "Demon Herring"
-seasons = ["autumn"]
-water_location = "ocean"
-time_of_day = "night"
+conditions = [
+    { water_location = ["ocean"], season = ["autumn"], time_of_day = ["night"], dimension = ["overworld"] }
+]
 
 [[fish]]
 name = "Copperflame Anthias"
-seasons = ["autumn", "winter"]
-water_location = "ocean"
-time_of_day = "night"
-weather = "clear"
+conditions = [
+    { water_location = ["ocean"], season = ["autumn", "winter"], time_of_day = ["night"], weather = ["clear"], dimension = ["overworld"] }
+]
 
 [[fish]]
 name = "Red Shrooma"
-seasons = ["autumn"]
-water_location = "ocean"
-time_of_day = "day"
-weather = "rain"
+conditions = [
+    { water_location = ["ocean"], season = ["autumn"], time_of_day = ["day"], weather = ["rain"], dimension = ["overworld"] }
+]
 
 [[fish]]
 name = "Gar"
-seasons = ["autumn"]
-water_location = "fresh"
-time_of_day = "day"
-weather = "rain"
+conditions = [
+    { water_location = ["fresh"], season = ["autumn"], time_of_day = ["day"], weather = ["rain"], dimension = ["overworld"] }
+]
 
 [[fish]]
 name = "Bark Angelfish"
-seasons = ["autumn"]
-water_location = "fresh"
-time_of_day = "day"
+conditions = [
+    { water_location = ["fresh"], season = ["autumn"], time_of_day = ["day"], dimension = ["overworld"] }
+]
 
 [[fish]]
 name = "Amber Goby"
-seasons = ["autumn"]
-water_location = "fresh"
-time_of_day = "night"
-weather = "clear"
+conditions = [
+    { water_location = ["fresh"], season = ["autumn"], time_of_day = ["night"], weather = ["clear"], dimension = ["overworld"] }
+]
 
 [[fish]]
 name = "Brown Trout"
-seasons = ["autumn", "winter"]
-water_location = "river"
-time_of_day = "day"
+conditions = [
+    { water_location = ["river"], season = ["autumn", "winter"], time_of_day = ["day"], dimension = ["overworld"] }
+]
 
 [[fish]]
 name = "Muskellenge"
-seasons = ["autumn"]
-water_location = "river"
-time_of_day = "night"
+conditions = [
+    { water_location = ["river"], season = ["autumn"], time_of_day = ["night"], dimension = ["overworld"] }
+]
 
 [[fish]]
 name = "Arrau Turtle"
-seasons = ["autumn"]
-water_location = "river"
-time_of_day = "night"
-weather = "rain"
+conditions = [
+    { water_location = ["river"], season = ["autumn"], time_of_day = ["night"], weather = ["rain"], dimension = ["overworld"] }
+]
 
 [[fish]]
 name = "Pollock"
-seasons = ["winter"]
-water_location = "ocean"
-time_of_day = "day"
-weather = "rain"
+conditions = [
+    { water_location = ["ocean"], season = ["winter"], time_of_day = ["day"], weather = ["rain"], dimension = ["overworld"] }
+]
 
 [[fish]]
 name = "Atlantic Cod"
-seasons = ["winter"]
-water_location = "ocean"
-time_of_day = "day"
+conditions = [
+    { water_location = ["ocean"], season = ["winter"], time_of_day = ["day"], dimension = ["overworld"] }
+]
 
 [[fish]]
 name = "Triple Twirl Pleco"
-seasons = ["winter"]
-water_location = "ocean"
-time_of_day = "night"
+conditions = [
+    { water_location = ["ocean"], season = ["winter"], time_of_day = ["night"], dimension = ["overworld"] }
+]
 
 [[fish]]
 name = "Pacific Halibut"
-seasons = ["winter"]
-water_location = "ocean"
-time_of_day = "day"
+conditions = [
+    { water_location = ["ocean"], season = ["winter"], time_of_day = ["day"], dimension = ["overworld"] }
+]
 
 [[fish]]
 name = "Brown Shrooma"
-seasons = ["winter"]
-water_location = "ocean"
-time_of_day = ["day", "night"]
-weather = "rain"
+conditions = [
+    { water_location = ["ocean"], season = ["winter"], weather = ["rain"], dimension = ["overworld"] }
+]
 
 [[fish]]
 name = "Snowflake"
-seasons = ["winter"]
-water_location = "fresh"
-time_of_day = "night"
-weather = "rain"
+conditions = [
+    { water_location = ["fresh"], season = ["winter"], time_of_day = ["night"], weather = ["rain"], dimension = ["overworld"] }
+]
 
 [[fish]]
 name = "Aero Mono"
-seasons = ["winter"]
-water_location = "fresh"
-time_of_day = "day"
+conditions = [
+    { water_location = ["fresh"], season = ["winter"], time_of_day = ["day"], dimension = ["overworld"] }
+]
 
 [[fish]]
 name = "Duality Damselfish"
-seasons = ["winter"]
-water_location = "river"
-time_of_day = "night"
-weather = "clear"
+conditions = [
+    { water_location = ["river"], season = ["winter"], time_of_day = ["night"], weather = ["clear"], dimension = ["overworld"] }
+]
 
 [[fish]]
 name = "Rainbow Trout"
-seasons = ["winter"]
-water_location = "river"
-time_of_day = "day"
-weather = "rain"
+conditions = [
+    { water_location = ["river"], season = ["winter"], time_of_day = ["day"], weather = ["rain"], dimension = ["overworld"] }
+]
 
 [[fish]]
 name = "Starshell Turtle"
-seasons = ["winter"]
-water_location = "river"
-time_of_day = "night"
-weather = "rain"
+conditions = [
+    { water_location = ["river"], season = ["winter"], time_of_day = ["night"], weather = ["rain"], dimension = ["overworld"] }
+]
 
 [[fish]]
 name = "Searing Cod"
-dimension = "nether"
-biome = "any"
+conditions = [
+    { dimension = ["nether"] }
+]
 
 [[fish]]
 name = "Lava Pufferfish"
-dimension = "nether"
-biome = "any"
+conditions = [
+    { dimension = ["nether"] }
+]
 
 [[fish]]
 name = "Fortress Grouper"
-dimension = "nether"
-biome = "any"
+conditions = [
+    { dimension = ["nether"] }
+]
 
 [[fish]]
 name = "Blazefish"
-dimension = "nether"
-biome = "any"
+conditions = [
+    { dimension = ["nether"] }
+]
 
 [[fish]]
 name = "Obsidianfish"
-dimension = "nether"
-biome = "Basalt Deltas"
+conditions = [
+    { dimension = ["nether"], biome = ["basalt deltas"] }
+]
 
 [[fish]]
 name = "Magmacube Fish"
-dimension = "nether"
-biome = "Basalt Deltas"
+conditions = [
+    { dimension = ["nether"], biome = ["basalt deltas"] }
+]
 
 [[fish]]
 name = "Glowdine"
-dimension = "nether"
-biome = "Warped Forest"
+conditions = [
+    { dimension = ["nether"], biome = ["warped forest"] }
+]
 
 [[fish]]
 name = "Eyeball Fish"
-dimension = "nether"
-biome = "Crimson Forest"
+conditions = [
+    { dimension = ["nether"], biome = ["crimson forest"] }
+]
 
 [[fish]]
 name = "Bonefish"
-dimension = "nether"
-biome = "Nether Wastes"
+conditions = [
+    { dimension = ["nether"], biome = ["nether wastes"] }
+]
 
 [[fish]]
 name = "Wither Bonefish"
-dimension = "nether"
-biome = "Soul Sand Valley"
+conditions = [
+    { dimension = ["nether"], biome = ["soul sand valley"] }
+]
 
 [[fish]]
 name = "Soul Sucker"
-dimension = "nether"
-biome = "Soul Sand Valley"
+conditions = [
+    { dimension = ["nether"], biome = ["soul sand valley"] }
+]
