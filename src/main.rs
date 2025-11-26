@@ -4,11 +4,11 @@
 // include options to go back or restart the prompt
 
 use std::io;
-use std::fs;
 use std::fmt;
 use serde::Deserialize;
 use toml;
-use std::path::Path;
+
+const FISH_DATA_TOML: &str = include_str!("fish-data.toml");
 
 #[derive(Debug, Deserialize, Default)]
 #[serde(default)]
@@ -162,11 +162,10 @@ fn main() {
 
     loop {
 
-        let manifest_dir = env!("CARGO_MANIFEST_DIR");
-        let path = Path::new(manifest_dir).join("fish-data.toml");
-        let toml_str = fs::read_to_string(&path).expect("Failed to read file");
+        // let toml_str = fs::read_to_string("fish-data.toml")
+        //     .expect("Failed to read file");
 
-        let fish_data: FishData = toml::from_str(&toml_str).expect("Failed to parse TOML");
+        let fish_data: FishData = toml::from_str(FISH_DATA_TOML).expect("Failed to parse TOML");
         let fish_list = fish_data.fish;
 
         println!("Welcome to the Society: Sunlit Valley Fish Radar!");
