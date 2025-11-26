@@ -4,12 +4,11 @@
 // include options to go back or restart the prompt
 
 use std::io;
-use std::io::Read;
-use std::collections::HashMap;
 use std::fs;
 use std::fmt;
 use serde::Deserialize;
 use toml;
+use std::path::Path;
 
 #[derive(Debug, Deserialize, Default)]
 #[serde(default)]
@@ -39,25 +38,43 @@ impl fmt::Display for Conditions {
         for each field, iterate through each value
         concatenate the vector values into one comma separated list, prepended by the field name
          */
-        write!(c, "\tWater locations: ")?;
-        write!(c, "{}\n", self.water_location.iter().map(|s| s.as_str()).collect::<Vec<_>>().join(", "))?;
-        write!(c, "\tSeasons: ")?;
-        write!(c, "{}\n", self.season.iter().map(|s| s.as_str()).collect::<Vec<_>>().join(", "))?;
-        write!(c, "\tTime of day: ")?;
-        write!(c, "{}\n", self.time_of_day.iter().map(|s| s.as_str()).collect::<Vec<_>>().join(", "))?;
-        write!(c, "\tBiome: ")?;
-        write!(c, "{}\n", self.biome.iter().map(|s| s.as_str()).collect::<Vec<_>>().join(", "))?;
-        write!(c, "\tWeather: ")?;
-        write!(c, "{}\n", self.weather.iter().map(|s| s.as_str()).collect::<Vec<_>>().join(", "))?;
-        write!(c, "\tDimension: ")?;
-        write!(c, "{}\n", self.dimension.iter().map(|s| s.as_str()).collect::<Vec<_>>().join(", "))
 
+        fn format_field(field_name: &str, field: &Vec<String>) -> String {
+            let mut output: String = format!("\t{}: ", field_name);
+            if field.is_empty() {
+                output.push_str(&format!("{}\n", "any".to_string()));
+            }
+            else {
+                output.push_str(&format!("{}\n", field.iter().map(|a| a.as_str()).collect::<Vec<_>>().join(", ")));
+            }
+            output
+        }
+        write!(c, "{}", format_field("Dimension", &self.dimension))?;
+        if !self.dimension.contains(&"nether".to_string()) {
+            write!(c, "{}", format_field("Water location", &self.water_location))?;
+        }
+        if !self.dimension.contains(&"nether".to_string()) {
+            write!(c, "{}", format_field("Seasons", &self.season))?;
+        }
+        if !self.dimension.contains(&"nether".to_string()) {
+            write!(c, "{}", format_field("Time of day", &self.time_of_day))?;
+        }
+        if !self.dimension.contains(&"overworld".to_string()) {
+            write!(c, "{}", format_field("Biome", &self.biome))?;
+        }
+        if !self.dimension.contains(&"nether".to_string()) {
+            write!(c, "{}", format_field("Weather", &self.weather))?;
+        }
+        Ok(())
     }
 }
 
 impl fmt::Display for Fish {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "Fish name: {}\n", self.name)?;
+        // write!(f, "Fish name: {}\n", self.name)?;
+        if self.name == "Neptuna" {
+            println!("IMPORTANT NOTE! Neptuna becomes catchable once you've unlocked the skill tree perk.");
+        }
         self.conditions.iter().try_for_each(|condition| {
             write!(f, "  - Condition set:\n {}", condition)
         })
@@ -78,9 +95,30 @@ fn text_input(display_text: &str, choices: &[&str]) -> String {
         .map(|s| s.to_lowercase())
         .collect();
 
+    let num_columns = 6;
+    let column_width = 24;
+    let max_list_length = 6;
+    let formatted_list: String = if choices.len() < max_list_length {
+        choices.join(", ")
+    }
+    else {
+        choices.iter()
+            .enumerate()
+            .map(|(index, choice)| {
+                let padded_choice = format!("{:<width$}", choice, width = column_width);
+
+                if (index + 1) % num_columns == 0 {
+                    format!("{}\n", padded_choice)
+                }
+                else {
+                    padded_choice
+                }
+            })
+            .collect()
+    };
     loop {
         println!("{}", display_text);
-        println!("Options: {}", choices.join(", "));
+        println!("Options:\n{}", formatted_list);
 
         let mut input = String::new();
         io::stdin().read_line(&mut input).expect("Failed to read");
@@ -124,13 +162,14 @@ fn main() {
 
     loop {
 
-        let toml_str = fs::read_to_string("fish-data.toml")
-            .expect("Failed to read file");
+        let manifest_dir = env!("CARGO_MANIFEST_DIR");
+        let path = Path::new(manifest_dir).join("fish-data.toml");
+        let toml_str = fs::read_to_string(&path).expect("Failed to read file");
 
         let fish_data: FishData = toml::from_str(&toml_str).expect("Failed to parse TOML");
         let fish_list = fish_data.fish;
 
-        println!("Welcome to the Sunlit Valley Fish Radar!");
+        println!("Welcome to the Society: Sunlit Valley Fish Radar!");
         let mut spawn_conditions = Conditions {
             water_location: vec![],
             season: vec![],
@@ -139,7 +178,7 @@ fn main() {
             weather: vec![],
             dimension: vec![]
         };
-        let search_method = text_input("Are you looking for what fish are catchable around you? Or when to catch a specific fish?", &["All", "Specific"]);
+        let search_method = text_input("Are you looking for what fish are catchable around you? Or when to catch a specific fish?", &["All", "Specific", "Exit"]);
         if search_method == "all" {
             let dimension = text_input("Enter the dimension:", &["Overworld", "Nether"]);
             if dimension == "overworld" {
@@ -159,12 +198,13 @@ fn main() {
             spawn_conditions.dimension.push(dimension);
 
             let return_list = find_fish(&spawn_conditions, &fish_list);
+            println!("Here are the spawn conditions you provided:\n{}", spawn_conditions);
             println!("\nCatchable fish:");
                 for fish in return_list {
                     println!("  - {}", fish.name);
                 }
             }
-        else {
+        else if search_method == "specific" {
             let fish_name_refs : Vec<&str> = fish_list
                 .iter()
                 .map(|fish| fish.name.as_str())
@@ -172,9 +212,13 @@ fn main() {
             let fish_name_slice: &[&str] = fish_name_refs.as_slice();
             let fish_name = text_input("Please enter the fish you are searching for:", fish_name_slice);
             let found_fish_conditions = reverse_search(fish_name.as_str(), &fish_list);
-            println!("Here are the conditions required to catch this fish:\n");
+            println!("\nHere are the conditions required to catch {}:", found_fish_conditions.name);
             println!("\n{}", found_fish_conditions);
         }
+        else {
+            break;
+        }
     }
+    println!("\nThank you for using the Society: Sunlit Valley Fish Radar!");
 
 }
